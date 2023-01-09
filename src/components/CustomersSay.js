@@ -1,5 +1,5 @@
 import testimonials from '../services/testimonials';
-import { Box, Card, Image, Text, Button, Spacer, Center, Flex } from "@chakra-ui/react";
+import { Box, Card, Image, Text, Center, Flex } from "@chakra-ui/react";
 import { StarIcon } from '@chakra-ui/icons';
 
 
@@ -12,13 +12,15 @@ const CustomersSay = () => {
                 <Flex pt='3vh' pb='5vh' pr='10vw' pl='10vw' h='375px'>
                     {testimonials.map(t => {
                         return (
-                            <Box textAlign='center' justifyContent='center' w='25%'>
-                                <Text>Rating: {t.rating} <StarIcon></StarIcon></Text>
+                            <Box p={2} m={2} maxH='210px' borderRadius={15} backgroundColor='papayawhip' textAlign='center' justifyContent='center' w='25%'>
+                                <Text>Rating: {t.rating} <StarIcon color='#F4CE14'></StarIcon></Text>
                                 <Center>
-                                    <Image src={t.userImage} w='30%' />
-                                    <Text>{t.userName}</Text>
+                                    <Image borderRadius={30} src={t.userImage} w='30%' />
+                                    <Text ml={2} fontWeight='bold'>{t.userName}</Text>
                                 </Center>
-                                <Text maxW='75%'>{t.review}</Text>
+                                <Center>
+                                    <Text>{t.review}</Text>
+                                </Center>
                             </Box>
                         )
                     })}

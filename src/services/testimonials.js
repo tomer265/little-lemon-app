@@ -8,13 +8,13 @@ const testimonials = [
         rating: 5,
         userName: 'David',
         userImage: person1,
-        review: 'Best place in Chicago!'
+        review: "Best place in Chicago! Can't wait till next time."
     },
     {
         rating: 5,
         userName: 'Liya',
         userImage: person2,
-        review: 'Great vegao options.'
+        review: 'Great vegan options. We especially liked the selection of salads.'
     },
     {
         rating: 5,
