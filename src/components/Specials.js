@@ -5,7 +5,7 @@ import bikeIcon from '../assets/bike_icon.png';
 
 const Specials = () => {
     return (
-        <Box mt='2em' pr={{ base: '0', lg: '10vw' }} pl={{ base: '0', lg: '10vw' }}>
+        <Box mt={{base: '10em', lg: '6em'}} pr={{ base: '0', lg: '10vw' }} pl={{ base: '0', lg: '10vw' }}>
             <Flex>
                 <Heading size={{ base: 'md', lg: '2xl' }}>This week's specials!</Heading>
                 <Spacer />
