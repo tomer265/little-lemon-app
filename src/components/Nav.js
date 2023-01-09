@@ -3,7 +3,6 @@ import {
   Flex,
   Text,
   IconButton,
-  Button,
   Stack,
   Collapse,
   Icon,
@@ -19,7 +18,6 @@ import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
-  ChevronRightIcon,
 } from '@chakra-ui/icons';
 import logo from '../assets/logo.png'
 
@@ -27,7 +25,7 @@ export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Box>
+    <Box position='fixed' top={0} w='75%' zIndex={2}>
       <Flex
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}

@@ -3,7 +3,7 @@ import eclare from '../assets/fish_eclair_big.png'
 
 const Hero = () => {
     return (
-        <Card backgroundColor='#495E57'>
+        <Card mt={20} backgroundColor='#495E57'>
             <Box pt='5vh' pb='5vh' pr='10vw' pl='10vw'>
                 <Box display={{ base: 'block', lg: 'flex' }}>
                     <Box w={{ base: '100%', lg: '50%' }} pr='1em'>

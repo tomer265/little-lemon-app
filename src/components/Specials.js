@@ -1,5 +1,6 @@
-import { Box, Button, Heading, Stack, Flex, Spacer, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Stack, Flex, Spacer, Image, Text, Link } from "@chakra-ui/react";
 import specials from "../services/specials";
+import bikeIcon from '../assets/bike_icon.png';
 
 
 const Specials = () => {
@@ -10,17 +11,25 @@ const Specials = () => {
                 <Spacer />
                 <Button float='right' size='lg' backgroundColor='#F4CE14'>Order Online</Button>
             </Flex>
-            <Stack direction={{ base: 'column', lg: 'row' }}>
+            <Stack direction={{ base: 'column', lg: 'row' }} mt='2em'>
                 {specials.map((s, i) => {
                     return (
-                        <Box w='33%' key={i}>
-                            <Image borderTopRadius={15} src={s.image} />
-                            <Flex backgroundColor='#C1C1C1'>
+                        <Box w={{ base: '100%', lg: '33%' }} key={i}>
+                            <Image h='280px' w='-webkit-fill-available' borderTopRadius={15} src={s.image} />
+                            <Flex pt={4} pl={2} pr={2} backgroundColor='#C1C1C1'>
                                 <Heading size='sm' fontWeight='bold'>{s.name}</Heading>
                                 <Spacer />
                                 <Heading size='sm' color='#FF5924' fontWeight='bold'>{s.price}</Heading>
                             </Flex>
-                            <Text backgroundColor='#C1C1C1'>{s.desc}</Text>
+                            <Box minH='200px' backgroundColor='#C1C1C1'>
+                                <Text pt={2} pl={4} pr={4}>{s.desc}</Text>
+                            </Box>
+                            <Link>
+                                <Flex pb={1} justifyContent='center' bottom={0} borderBottomRadius='15px' backgroundColor='#C1C1C1'>
+                                    <Text fontWeight='bold'>Order a delivery</Text>
+                                    <Image pl={2} src={bikeIcon} />
+                                </Flex>
+                            </Link>
                         </Box>
                     )
                 })}
