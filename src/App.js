@@ -1,14 +1,16 @@
 import './App.css';
 import WithSubnavigation from './components/Nav';
-import Hero from './components/Hero';
-import Specials from './components/Specials';
+import HomePage from './components/HomePage';
+import { Route } from 'react-router-dom';
+import BookTable from './components/BookTable';
+
 
 function App() {
   return (
     <div className='main-div'>
       <WithSubnavigation />
-      <Hero />
-      <Specials/>
+      <Route path={['/', '/home']} component={HomePage} exact />
+      <Route path='/booking' component={BookTable} />
     </div>
   );
 }

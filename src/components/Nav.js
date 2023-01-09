@@ -165,7 +165,7 @@ const MobileNavItem = ({ label, children, href }) => {
 const NAV_ITEMS = [
   {
     label: 'Home',
-    href: '#',
+    href: '/',
   },
   {
     label: 'About',
@@ -177,7 +177,7 @@ const NAV_ITEMS = [
   },
   {
     label: 'Reservations',
-    href: '#',
+    href: '/booking',
   },
   {
     label: 'Order Online',
