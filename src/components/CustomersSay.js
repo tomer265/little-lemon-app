@@ -12,7 +12,7 @@ const CustomersSay = () => {
                 <Box display={{ base: 'block', lg: 'flex' }} pt='3vh' pb='5vh' pr='10vw' pl='10vw'>
                     {testimonials.map(t => {
                         return (
-                            <Box p={2} m={2} maxH='210px' borderRadius={15} backgroundColor='papayawhip' textAlign='center' justifyContent='center' w={{ base: '100%', lg: '25%' }}>
+                            <Box key={t.userName} p={2} m={2} maxH='210px' borderRadius={15} backgroundColor='papayawhip' textAlign='center' justifyContent='center' w={{ base: '100%', lg: '25%' }}>
                                 <Text>Rating: {t.rating} <StarIcon color='#F4CE14'></StarIcon></Text>
                                 <Center>
                                     <Image borderRadius={30} src={t.userImage} w='30%' />

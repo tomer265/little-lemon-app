@@ -18,13 +18,14 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 
 
-const BookTable = () => {
+const BookTable = (props) => {
 
     const [guests, setGuests] = useState(1)
     const handleNumberInputChange = (e) => {
         setGuests(e.target.value);
     }
     const isGuestsError = 10 < guests || guests < 1;
+
 
     const [date, setDate] = useState(new Date())
     const handleDateInputChange = (e) => {
@@ -37,14 +38,26 @@ const BookTable = () => {
         year: "numeric"
     });
 
+    const [time, setTime] = useState(null)
+    const [hasTimeFocused, setHasTimeFocused] = useState(false);
+    let isTimeError = (time === 'Select a time' || time === null) && hasTimeFocused === true;
+    const handleTimeChange = (e) => {
+        setTime(e.target.value);
+        props.dispatchAvailableTimes({type: 'timeChange', payload: e.target.value})
+    }
+    const handleTimeFieldFocus = () => {
+        setHasTimeFocused(true);
+    }
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        alert(isGuestsError)
-        if (isGuestsError) {
+        if (isGuestsError || isTimeError) {
             return;
         }
         return;
     }
+
 
     return (
         <Box pl='12.5%' mt={20}>
@@ -66,16 +79,15 @@ const BookTable = () => {
                                 onKeyDown={(e) => e.preventDefault()}
                             />
                         </FormControl>
-                        <FormControl mb={12} maxW={200}>
+                        <FormControl isInvalid={isTimeError} mb={12} maxW={200}>
                             <FormLabel>Choose Time</FormLabel>
-                            <Select id="res-time ">
-                                <option>17:00</option>
-                                <option>18:00</option>
-                                <option>19:00</option>
-                                <option>20:00</option>
-                                <option>21:00</option>
-                                <option>22:00</option>
+                            <Select id="res-time" onFocus={handleTimeFieldFocus} onChange={handleTimeChange}>
+                                <option>Select a time</option>
+                                {props.availableTimes.map(t => {
+                                    return <option key={t}>{t}</option>
+                                })}
                             </Select>
+                            <FormErrorMessage>Time selection is required.</FormErrorMessage>
                         </FormControl>
                         <FormControl isInvalid={isGuestsError} mb={12} maxW={200}>
                             <FormLabel>Number of guests</FormLabel>
@@ -85,8 +97,8 @@ const BookTable = () => {
                         <FormControl mb={12} maxW={200}>
                             <FormLabel>Occasion</FormLabel>
                             <Select id="occasion">
-                                <option>Birthday</option>
                                 <option>Anniversary</option>
+                                <option>Birthday</option>
                             </Select>
                         </FormControl>
                         <FormControl mb={12} maxW={200}>
