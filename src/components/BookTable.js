@@ -15,12 +15,13 @@ import { useState } from 'react'
 import DatePicker from 'react-datepicker';
 import './BookTable.css'
 import 'react-datepicker/dist/react-datepicker.css';
+import { useHistory } from 'react-router-dom';
 
 
 
 const BookTable = (props) => {
-
-    const [guests, setGuests] = useState(1)
+    const history = useHistory();
+    const [guests, setGuests] = useState(1);
     const handleNumberInputChange = (e) => {
         setGuests(e.target.value);
     }
@@ -29,7 +30,6 @@ const BookTable = (props) => {
 
     const [date, setDate] = useState(new Date())
     const handleDateInputChange = (e) => {
-        console.log(e)
         setDate(e);
     }
     const formattedDate = date.toLocaleString("en-GB", {
@@ -40,21 +40,29 @@ const BookTable = (props) => {
 
     const [time, setTime] = useState(null)
     const [hasTimeFocused, setHasTimeFocused] = useState(false);
-    let isTimeError = (time === 'Select a time' || time === null) && hasTimeFocused === true;
+    let isTimeError = (time === 'Select a time' || time === null);
+    let isTimeErrorDisplay = isTimeError && hasTimeFocused === true;
     const handleTimeChange = (e) => {
         setTime(e.target.value);
-        props.dispatchAvailableTimes({type: 'timeChange', payload: e.target.value})
+        props.dispatchForm({type: 'timeChange', payload: e.target.value})
     }
     const handleTimeFieldFocus = () => {
         setHasTimeFocused(true);
     }
 
+    const [occasion, setOccasion] = useState('Anniversary')
+    const handleOccasionChange = (e) =>{
+        setOccasion(e.target.value)
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
         if (isGuestsError || isTimeError) {
+            alert('please make sure all fields are correctly filled.');
             return;
         }
+        props.dispatchForm({type: 'submitForm', payload: {date, time, guests, occasion}})
+        history.push('/thank-you-booking')
         return;
     }
 
@@ -79,11 +87,11 @@ const BookTable = (props) => {
                                 onKeyDown={(e) => e.preventDefault()}
                             />
                         </FormControl>
-                        <FormControl isInvalid={isTimeError} mb={12} maxW={200}>
+                        <FormControl isInvalid={isTimeErrorDisplay} mb={12} maxW={200}>
                             <FormLabel>Choose Time</FormLabel>
                             <Select id="res-time" onFocus={handleTimeFieldFocus} onChange={handleTimeChange}>
                                 <option>Select a time</option>
-                                {props.availableTimes.map(t => {
+                                {props && props.availableTimes && props.availableTimes.map(t => {
                                     return <option key={t}>{t}</option>
                                 })}
                             </Select>
@@ -96,13 +104,13 @@ const BookTable = (props) => {
                         </FormControl>
                         <FormControl mb={12} maxW={200}>
                             <FormLabel>Occasion</FormLabel>
-                            <Select id="occasion">
+                            <Select onChange={handleOccasionChange} id="occasion">
                                 <option>Anniversary</option>
                                 <option>Birthday</option>
                             </Select>
                         </FormControl>
                         <FormControl mb={12} maxW={200}>
-                            <Button onClick={handleSubmit} backgroundColor='#F4CE14' type="submit">Make Your reservation</Button>
+                            <Button onClick={(e) => handleSubmit(e)} backgroundColor='#F4CE14' type="submit">Make Your reservation</Button>
                         </FormControl>
                     </form>
                 </Box>
