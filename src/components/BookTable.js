@@ -89,7 +89,7 @@ const BookTable = (props) => {
                         </FormControl>
                         <FormControl isInvalid={isTimeErrorDisplay} mb={12} maxW={200}>
                             <FormLabel>Choose Time</FormLabel>
-                            <Select id="res-time" onFocus={handleTimeFieldFocus} onChange={handleTimeChange}>
+                            <Select aria-required="true" id="res-time" onFocus={handleTimeFieldFocus} onChange={handleTimeChange}>
                                 <option>Select a time</option>
                                 {props && props.availableTimes && props.availableTimes.map(t => {
                                     return <option key={t}>{t}</option>
@@ -99,7 +99,7 @@ const BookTable = (props) => {
                         </FormControl>
                         <FormControl isInvalid={isGuestsError} mb={12} maxW={200}>
                             <FormLabel>Number of guests</FormLabel>
-                            <Input type="number" placeholder="1" id="guests" onChange={handleNumberInputChange} />
+                            <Input aria-valuemin="1" aria-valuemax="10" aria-required="true" type="number" placeholder="1" id="guests" onChange={handleNumberInputChange} />
                             <FormErrorMessage>Number of guests must be between 1 and 10.</FormErrorMessage>
                         </FormControl>
                         <FormControl mb={12} maxW={200}>
@@ -110,7 +110,7 @@ const BookTable = (props) => {
                             </Select>
                         </FormControl>
                         <FormControl mb={12} maxW={200}>
-                            <Button onClick={(e) => handleSubmit(e)} backgroundColor='#F4CE14' type="submit">Make Your reservation</Button>
+                            <Button aria-label='Make Your reservation' onClick={(e) => handleSubmit(e)} backgroundColor='#F4CE14' type="submit">Make Your reservation</Button>
                         </FormControl>
                     </form>
                 </Box>

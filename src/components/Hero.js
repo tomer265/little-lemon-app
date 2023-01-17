@@ -18,7 +18,7 @@ const Hero = () => {
                         <Text textColor='white' fontSize={{ lg: '32px', base: '13px' }}>Chicago</Text>
                         <Text textColor='white' pt='0.2em' fontSize={{ lg: '29px', base: '13px' }}>We offer fresh and light dishes,
                             using ingredients from mediterranean cuisins.</Text>
-                        <Button onClick={handleReserveATable} size='lg' backgroundColor='#F4CE14' mt='2em'>Reserve A Table</Button>
+                        <Button aria-label='Reserve A Table' onClick={handleReserveATable} size='lg' backgroundColor='#F4CE14' mt='2em'>Reserve A Table</Button>
                     </Box>
                     <Spacer />
                     <Box w={{ base: '100%', lg: '50%' }} pl={{ base: '0', lg: '11em' }} pt={{ base: '1em', lg: '0' }}>
